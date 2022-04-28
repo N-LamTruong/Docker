@@ -112,3 +112,7 @@ Sau khi tải image Elasticsearch xuống thành công, hãy **khởi chạy** c
 ```console
 docker run -d --name elasticsearch -p 9200:9200 -v /etc/localtime:/etc/localtime:ro -e "ES_JAVA_OPTS=-Xms128m -Xmx128m" -e "discovery.type=single-node" -e "xpack.security.enabled=false" elasticsearch:8.1.1
 ```
+**-> Giải thích 1 chút cho các bạn hiểu :))**
+* Mặc định Elasticsearch sử dụng port 9200
+* -v /etc/localtime:/etc/localtime:ro ánh xạ múi giờ trên server vào container
+* ES_JAVA_OPTS=-Xms128m -Xmx128m cấu hình JVM thường để bằng 1/3 dung lượng RAM server
