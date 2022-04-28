@@ -36,3 +36,32 @@ RUN /usr/local/bin/gem install fluent-plugin-secure-forward
 ADD ./fluent.conf /etc/fluent/
 ENTRYPOINT ["/usr/local/bundle/bin/fluentd", "-c", "/etc/fluent/fluent.conf"]
 ```
+Bạn cũng cần tạo một tệp **fluent.conf** trong cùng thư mục đó:
+```console
+sudo nano fluent.conf
+```
+Tệp **fluent.conf** sẽ config như sau. Bạn có thể sao chép chính xác tệp này:
+```console
+<match **.*>
+  @type copy
+  <store>
+    @type elasticsearch
+    host 192.168.5.10
+    port 9200
+    index_name ${tag}
+    type_name ${tag}
+    enable_ilm true
+    include_timestamp true
+    flush_interval 5s
+  </store>
+  <store>
+    @type stdout
+  </store>
+</match>
+
+<source>
+  @type forward
+  port 24224
+  bind 0.0.0.0
+</source>
+```
