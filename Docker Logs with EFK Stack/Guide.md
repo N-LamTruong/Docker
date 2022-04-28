@@ -91,3 +91,13 @@ Bạn sẽ thấy đầu ra như thế này:
     REPOSITORY           TAG       IMAGE ID       CREATED          SIZE
     fluentd-aggregator   latest    858465f09f14   17 seconds ago   898MB
     ruby                 2.6.6     6d86b0beade7   13 months ago    840MB
+
+## Bước 2: Khởi động container Elasticsearch
+Bây giờ, hãy quay lại thư mục gốc hoặc thư mục ưa thích của bạn cho container **Elasticsearch** và trong hướng dẫn này sẽ sử dụng **version 8.1.1**:
+```console
+cd && docker pull elasticsearch:8.1.1
+```
+Trước khi khởi động container Elasticsearch, chúng ta cần tăng giá trị **max_map_count** trên máy chủ Docker của bạn vì image này nhanh hơn so với việc tự cấu hình
+```console
+sudo sysctl -w vm.max_map_count=262144
+```
