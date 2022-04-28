@@ -77,3 +77,17 @@ File config Fluentd được chia làm 2 phần chính là **match** và **sourc
   * @type stdout: Plugin output stdout in các sự kiện đầu ra theo tiêu chuẩn (hoặc logs nếu được khởi chạy dưới dạng daemon). Plugin đầu ra này rất hữu ích cho mục đích gỡ lỗi.
 *  **source** là đầu vào, chỉ cho fluentd biết nhận logs từ những nguồn nào
     *   @type forward, port, bind: Lắng nghe logs gửi đến mặc định ở port 24224 và bind để nhận từ tất cả các nguồn
+
+Sau đó, xây dựng image Docker của bạn, có thể đặt tên image là fluentd-aggregator:
+```console
+docker build -t fluentd-aggregator .
+```
+Quá trình này sẽ mất vài phút để hoàn thành. Kiểm tra xem bạn đã tạo thành công các image chưa:
+```console
+docker image ls
+```
+Bạn sẽ thấy đầu ra như thế này:
+
+    REPOSITORY           TAG       IMAGE ID       CREATED          SIZE
+    fluentd-aggregator   latest    858465f09f14   17 seconds ago   898MB
+    ruby                 2.6.6     6d86b0beade7   13 months ago    840MB
