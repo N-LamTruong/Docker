@@ -131,7 +131,7 @@ Bạn sẽ thấy đầu ra như thế này:
 Check web
 
 ## Bước 3: Khởi động container Kibana kết nối Elasticsearch (192.168.5.30)
-**Chú ý: Version của Kibana và Elasticsearch phải giống nhau**
+**Chú ý: Version của Kibana và Elasticsearch phải cùng nhau**
 
 Tải **Kibana version 8.1.1** về server
 ```console
