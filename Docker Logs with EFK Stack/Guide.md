@@ -20,3 +20,19 @@ Tạo một thư mục mới cho các tài nguyên Fluentd Docker của bạn v�
 ```console
 sudo mkdir Fluent-Aggregator-Docker && cd Fluent-Aggregator-Docker
 ```
+Tạo **Dockerfile**:
+```console
+sudo nano Dockerfile
+```
+Thêm chính xác các nội dung sau vào tệp của bạn. Tệp này yêu cầu Docker cài đặt **Ruby**, **Fluentd** và **plugin kết nối Elasticsearch** kèm 1 số lệnh thực thi khi khởi tạo container:
+```console
+FROM ruby:2.6.6
+RUN apt-get update
+RUN gem install fluentd -v "~>1.14.0"
+RUN mkdir /etc/fluent
+RUN apt-get install libcurl4-gnutls-dev -y
+RUN /usr/local/bin/gem install fluent-plugin-elasticsearch
+RUN /usr/local/bin/gem install fluent-plugin-secure-forward
+ADD ./fluent.conf /etc/fluent/
+ENTRYPOINT ["/usr/local/bundle/bin/fluentd", "-c", "/etc/fluent/fluent.conf"]
+```
