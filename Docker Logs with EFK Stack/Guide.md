@@ -116,3 +116,14 @@ docker run -d --name elasticsearch -p 9200:9200 -v /etc/localtime:/etc/localtime
 * Mặc định Elasticsearch sử dụng port 9200
 * -v /etc/localtime:/etc/localtime:ro ánh xạ múi giờ trên server vào container
 * ES_JAVA_OPTS=-Xms128m -Xmx128m cấu hình JVM thường để bằng 1/3 dung lượng RAM server
+* discovery.type=single-node hiện tại chỉ sử dụng 1 node Elasticsearch
+* xpack.security.enabled=false tắt gói bảo mật của Elasticsearch, hướng dẫn này chưa dùng đến tính năng xác thực account để login
+
+Tiếp theo, hãy đảm bảo rằng **container Elasticsearch** đang chạy bình thường bằng cách kiểm tra các container đang hoạt động:
+```console
+docker ps
+```
+Bạn sẽ thấy đầu ra như thế này:
+
+    CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                                 NAMES
+    577c7db077d8   elasticsearch:8.1.1   "/bin/tini -- /usr/l…"   33 minutes ago   Up 33 minutes   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9300/tcp   elasticsearch
