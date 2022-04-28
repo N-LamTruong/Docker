@@ -4,13 +4,13 @@
 
 ## Giới thiệu
 
-Khi bạn đưa các containers Docker vào sử dụng, bạn sẽ thấy nhu cầu thu thập logs ngày càng cần thiết. Để duy trì nhận logs ở một nơi nào đó dễ sử dụng, phân tích hơn containers. **Fluentd** là một công cụ thu thập dữ liệu mã nguồn mở được thiết kế để thống nhất cơ sở hạ tầng ghi logs của bạn. Nó tập hợp các kỹ sư vận hành, kỹ sư ứng dụng và kỹ sư dữ liệu lại với nhau bằng cách làm cho việc thu thập và lưu trữ logs trở nên đơn giản và có thể mở rộng.
+Khi bạn đưa các containers Docker vào sử dụng, bạn sẽ thấy nhu cầu thu thập logs rất cần thiết để giám sát hoạt động của container. Để duy trì nhận logs ở một nơi nào đó dễ sử dụng, dễ phân tích hơn ở chính containers. Thì **Fluentd** là một công cụ thu thập dữ liệu mã nguồn mở được thiết kế để thống nhất cơ sở hạ tầng ghi logs của bạn. Nó tập hợp các kỹ sư vận hành, kỹ sư ứng dụng và kỹ sư dữ liệu lại với nhau bằng cách làm cho việc thu thập và lưu trữ logs trở nên đơn giản và có thể mở rộng.
 
-**Fluentd** giúp bạn dễ dàng thu thập logs và định tuyến chúng đến một nơi khác, chẳng hạn như trong hướng dẫn này là Elasticsearch, để bạn có thể phân tích dữ liệu. Và sau đó chúng được chuyển tới **Kibana**, một giao diện thân thiện với bạn hơn.
+**Fluentd** giúp bạn dễ dàng thu thập logs và định tuyến chúng đến một nơi khác, chẳng hạn như trong hướng dẫn này là **Elasticsearch**, để bạn có thể phân tích dữ liệu logs. Và sau đó chúng được chuyển tới **Kibana**, một giao diện thân thiện với bạn hơn.
 
 ### Thiết lập cần thiết khi bắt đầu
 
-Để hoàn thành hướng dẫn này, bạn sẽ cần những thứ sau:
+**Để hoàn thành hướng dẫn này, bạn sẽ cần những thứ sau:**
 
 * Trong hướng dẫn này sử dụng 2 server Ubuntu để thực hiện: 
 
@@ -22,7 +22,7 @@ Khi bạn đưa các containers Docker vào sử dụng, bạn sẽ thấy nhu c
 sudo timedatectl set-timezone Asia/Ho_Chi_Minh
 ```
   
-## Bước 1: Xây dựng image Fluentd
+## Bước 1: Xây dựng image Fluentd (192.168.5.30)
 Tạo một thư mục mới cho các tài nguyên Fluentd Docker của bạn và chuyển vào đó:
 ```console
 sudo mkdir Fluent-Aggregator-Docker && cd Fluent-Aggregator-Docker
@@ -99,7 +99,7 @@ Bạn sẽ thấy đầu ra như thế này:
     fluentd-aggregator   latest    858465f09f14   17 seconds ago   898MB
     ruby                 2.6.6     6d86b0beade7   13 months ago    840MB
 
-## Bước 2: Khởi động container Elasticsearch
+## Bước 2: Khởi động container Elasticsearch (192.168.5.30)
 Bây giờ, hãy quay lại thư mục gốc hoặc thư mục ưa thích của bạn cho container **Elasticsearch** và trong hướng dẫn này sẽ sử dụng **version 8.1.1**:
 ```console
 cd && docker pull elasticsearch:8.1.1
@@ -127,3 +127,5 @@ Bạn sẽ thấy đầu ra như thế này:
 
     CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                                 NAMES
     577c7db077d8   elasticsearch:8.1.1   "/bin/tini -- /usr/l…"   33 minutes ago   Up 33 minutes   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9300/tcp   elasticsearch
+
+## Bước 3: Khởi động container Kibana kết nối Elasticsearch
