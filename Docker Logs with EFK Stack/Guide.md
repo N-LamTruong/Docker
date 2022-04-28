@@ -74,16 +74,17 @@ Tệp **fluent.conf** sẽ config như sau. Bạn có thể sao chép chính xá
 ```
 **-> Cùng phân tích cú pháp cấu hình:**
 
-File config Fluentd được chia làm 2 phần chính là **match** và **source**
+File config Fluentd được chia làm 2 phần chính là **match** và **source**. Trong đó:
 
-* **match** là đầu ra, định tuyến cũng như chỉ đường cho logs biết chúng được vận chuyển tới đâu
-  * <**.*> giúp fluentd nhận tất cả các "index - chỉ mục theo tag bên phía server fluentd gửi logs"
-  * @type, host, port: Gửi logs đến Elasticsearch, địa chỉ IP của server chứa Elastic (hướng dẫn này thì bộ thu thập logs EFK cài chung trên 1 server), mặc định Elastic hoạt động trên port 9200
-  * index_name, type_name, enable_ilm: Nhận chỉ mục, tên,... theo tag từ bên server Fluentd gửi logs đến
-  * include_timestamp, flush_interval: Khi tạo chỉ mục trên Kibana sẽ có giao diện, hình ảnh trực quan, dễ hiểu. Thời gian làm mới nhận logs và gửi logs
-  * @type stdout: Plugin output stdout in các sự kiện đầu ra theo tiêu chuẩn (hoặc logs nếu được khởi chạy dưới dạng daemon). Plugin đầu ra này rất hữu ích cho mục đích gỡ lỗi.
-*  **source** là đầu vào, chỉ cho fluentd biết nhận logs từ những nguồn nào
-    *   @type forward, port, bind: Lắng nghe logs gửi đến mặc định ở port 24224 và bind để nhận từ tất cả các nguồn
+**match** là đầu ra, định tuyến cũng như chỉ đường cho logs biết chúng được vận chuyển tới đâu
+* <**.*> giúp fluentd nhận tất cả các "index - chỉ mục theo tag bên phía server fluentd gửi logs"
+* @type, host, port: Gửi logs đến Elasticsearch, địa chỉ IP của server chứa Elastic (hướng dẫn này thì bộ thu thập logs EFK cài chung trên 1 server), mặc định Elastic hoạt động trên port 9200
+* index_name, type_name, enable_ilm: Nhận chỉ mục, tên,... theo tag từ bên server Fluentd gửi logs đến
+* include_timestamp, flush_interval: Khi tạo chỉ mục trên Kibana sẽ có giao diện, hình ảnh trực quan, dễ hiểu. Thời gian làm mới nhận logs và gửi logs
+* @type stdout: Plugin output stdout in các sự kiện đầu ra theo tiêu chuẩn (hoặc logs nếu được khởi chạy dưới dạng daemon). Plugin đầu ra này rất hữu ích cho mục đích gỡ lỗi.
+
+**source** là đầu vào, chỉ cho fluentd biết nhận logs từ những nguồn nào
+*   @type forward, port, bind: Lắng nghe logs gửi đến mặc định ở port 24224 và bind để nhận từ tất cả các nguồn
 
 Sau đó, xây dựng image Docker của bạn, có thể đặt tên image là **fluentd-aggregator**:
 ```console
