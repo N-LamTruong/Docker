@@ -12,8 +12,15 @@ Khi bạn đưa các containers Docker vào sử dụng, bạn sẽ thấy nhu c
 
 Để hoàn thành hướng dẫn này, bạn sẽ cần những thứ sau:
 
+* Trong hướng dẫn này sử dụng 2 server Ubuntu để thực hiện: 
+
+    **192.168.5.30 cài EFK nhận logs** và **192.168.5.40 gửi logs**
 * Sử dụng Ubuntu server và có quyền root
 * Docker được cài đặt trên máy chủ của bạn bằng cách làm theo Cách cài đặt và sử dụng Docker trên Ubuntu
+* Cập nhật múi giờ trên server Ubuntu:
+```console
+sudo timedatectl set-timezone Asia/Ho_Chi_Minh
+```
   
 ## Bước 1: Xây dựng image Fluentd
 Tạo một thư mục mới cho các tài nguyên Fluentd Docker của bạn và chuyển vào đó:
@@ -46,7 +53,7 @@ Tệp **fluent.conf** sẽ config như sau. Bạn có thể sao chép chính xá
   @type copy
   <store>
     @type elasticsearch
-    host 192.168.5.10
+    host 192.168.5.30
     port 9200
     index_name ${tag}
     type_name ${tag}
