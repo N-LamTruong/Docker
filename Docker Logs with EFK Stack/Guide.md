@@ -17,5 +17,6 @@ Khi bạn đưa các containers Docker vào sử dụng, bạn sẽ thấy nhu c
   
 ## Bước 1: Xây dựng image Fluentd
 Tạo một thư mục mới cho các tài nguyên Fluentd Docker của bạn và chuyển vào đó:
-    
-`sudo mkdir Fluent-Aggregator-Docker && cd Fluent-Aggregator-Docker`
+```console
+sudo mkdir Fluent-Aggregator-Docker && cd Fluent-Aggregator-Docker
+```
