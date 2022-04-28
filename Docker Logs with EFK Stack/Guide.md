@@ -101,7 +101,7 @@ Trước khi khởi động container Elasticsearch, chúng ta cần tăng giá 
 ```console
 sudo sysctl -w vm.max_map_count=262144
 ```
-Sau khi tải image Elasticsearch xuống thành công, hãy **khởi chạy** container cùng 1 số lệnh và sử dụng biến trong container Elasticsearch
+Sau khi tải image Elasticsearch xuống thành công, hãy **khởi chạy** container cùng tham số và sử dụng biến trong container Elasticsearch
 ```console
 docker run -d --name elasticsearch -p 9200:9200 -v /etc/localtime:/etc/localtime:ro -e "ES_JAVA_OPTS=-Xms128m -Xmx128m" -e "discovery.type=single-node" -e "xpack.security.enabled=false" elasticsearch:8.1.1
 ```
