@@ -78,7 +78,7 @@ File config Fluentd được chia làm 2 phần chính là **match** và **sourc
 *  **source** là đầu vào, chỉ cho fluentd biết nhận logs từ những nguồn nào
     *   @type forward, port, bind: Lắng nghe logs gửi đến mặc định ở port 24224 và bind để nhận từ tất cả các nguồn
 
-Sau đó, xây dựng image Docker của bạn, có thể đặt tên image là fluentd-aggregator:
+Sau đó, xây dựng image Docker của bạn, có thể đặt tên image là **fluentd-aggregator**:
 ```console
 docker build -t fluentd-aggregator .
 ```
