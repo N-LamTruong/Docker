@@ -1,0 +1,58 @@
+sud  version: '3'
+
+#NETWORK
+networks:
+  my-network:
+    driver: bridge
+
+#VOLUMES
+volumes:
+  WEB-SITE:
+    driver_opts:
+      device: /home/lamtruong/mycode/website/
+      o: bind
+      type: none
+
+services:
+  # Container PHP
+  my-php:
+    container_name: php-1
+    build: 
+      dockerfile: dockerfile
+      context: ./php/
+    hostname: php
+    restart: always
+    networks:
+      - my-network
+    volumes:
+      - WEB-SITE:/home/website/
+  # Container HTTPD
+  my-httpd:
+    container_name: httpd-1
+    image: "httpd:latest"
+    hostname: httpd
+    restart: always
+    networks:
+      - my-network
+    volumes:
+      - WEB-SITE:/home/website/
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+    ports:
+      - "9999:80"
+      - "443:443"
+  # Container MySQL
+  my-mysql:
+    container_name: mysql-1
+    image: "mysql:latest"
+    hostname: mysql
+    restart: always
+    networks:
+      - my-network
+    volumes:
+      - ./db:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/my.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=db_website
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test

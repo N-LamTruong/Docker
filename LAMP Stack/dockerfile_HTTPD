@@ -1,0 +1,23 @@
+# Xây dựng image mới từ image centos:7 (Centos7)
+FROM centos:7
+
+# Cập nhật các packet, cài gói HTTPD, NANO, cập nhật kho lưu trữ epl-release, HTOP
+RUN yum update -y
+RUN yum install httpd httpd-tools -y
+RUN yum install nano -y
+RUN yum install epel-release -y
+RUN yum update -y
+RUN yum install htop -y
+
+# Thiết lập thư mục làm việc mặc định của image này
+WORKDIR /var/www/html
+#Thiết lập khi tạo container từ image sẽ mở cổng 80 đê chạy web
+EXPOSE 80 
+
+# Copy file index.html đang ở vị trí hiện tại trên host vào container có vị trí /var/www/html/
+ADD ./index.html /var/www/html/
+
+# Khi chạy image này, sẽ tạo ra container chạy tiến trình nào: HTTPD
+ENTRYPOINT [ "httpd" ]
+# Thiết lập tham số cho chỉ thị bật HTTPD, dùng CMD với tham số -D FOREGROUND
+CMD [ "-D", "FOREGROUND" ]
