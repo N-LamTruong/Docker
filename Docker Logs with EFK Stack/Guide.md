@@ -128,4 +128,13 @@ Bạn sẽ thấy đầu ra như thế này:
     CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                                 NAMES
     577c7db077d8   elasticsearch:8.1.1   "/bin/tini -- /usr/l…"   33 minutes ago   Up 33 minutes   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9300/tcp   elasticsearch
 
-## Bước 3: Khởi động container Kibana kết nối Elasticsearch
+## Bước 3: Khởi động container Kibana kết nối Elasticsearch (192.168.5.30)
+**Chú ý: Version của Kibana và Elasticsearch phải giống nhau**
+
+Tải **Kibana version 8.1.1** về server
+```console
+docker pull kibana:8.1.1
+```
+
+
+## Bước 3 - Khởi động container Fluentd-Aggregator liên kết Elasticsearch (192.168.5.30)
