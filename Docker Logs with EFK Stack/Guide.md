@@ -73,7 +73,7 @@ File config Fluentd được chia làm 2 phần chính là **match** và **sourc
   * <**.*> giúp fluentd nhận tất cả các "index - chỉ mục theo tag bên phía server fluentd gửi logs"
   * @type, host, port: Gửi logs đến Elasticsearch, địa chỉ IP của server chứa Elastic (hướng dẫn này thì bộ thu thập logs EFK cài chung trên 1 server), mặc định Elastic hoạt động trên port 9200
   * index_name, type_name, enable_ilm: Nhận chỉ mục, tên,... theo tag từ bên server Fluentd gửi logs đến
-  * include_timestamp. flush_interval: Khi tạo chỉ mục trên Kibana sẽ có giao diện, hình ảnh trực quan, dễ hiểu. Thời gian làm mới nhận logs và gửi logs
+  * include_timestamp, flush_interval: Khi tạo chỉ mục trên Kibana sẽ có giao diện, hình ảnh trực quan, dễ hiểu. Thời gian làm mới nhận logs và gửi logs
   * @type stdout: Plugin output stdout in các sự kiện đầu ra theo tiêu chuẩn (hoặc logs nếu được khởi chạy dưới dạng daemon). Plugin đầu ra này rất hữu ích cho mục đích gỡ lỗi.
 *  **source** là đầu vào, chỉ cho fluentd biết nhận logs từ những nguồn nào
     *   @type forward, port, bind: Lắng nghe logs gửi đến mặc định ở port 24224 và bind để nhận từ tất cả các nguồn
@@ -100,4 +100,8 @@ cd && docker pull elasticsearch:8.1.1
 Trước khi khởi động container Elasticsearch, chúng ta cần tăng giá trị **max_map_count** trên máy chủ Docker của bạn vì image này nhanh hơn so với việc tự cấu hình
 ```console
 sudo sysctl -w vm.max_map_count=262144
+```
+Sau khi tải image Elasticsearch xuống thành công, hãy **khởi chạy** container cùng 1 số lệnh và sử dụng biến trong container Elasticsearch
+```console
+docker run -d --name elasticsearch -p 9200:9200 -v /etc/localtime:/etc/localtime:ro -e "ES_JAVA_OPTS=-Xms128m -Xmx128m" -e "discovery.type=single-node" -e "xpack.security.enabled=false" elasticsearch:8.1.1
 ```
