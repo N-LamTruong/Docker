@@ -133,7 +133,7 @@ Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.3
 
 Bạn sẽ thấy kết quả hiển thị tương tự như sau:
 
-
+![Untitled (2)](https://user-images.githubusercontent.com/97789851/165886662-5d7bc6d2-6a89-41f4-87a3-270e75fea0e7.png)
 ## Bước 3: Khởi động container Kibana kết nối Elasticsearch (192.168.5.30)
 **Chú ý: Version của Kibana và Elasticsearch phải cùng nhau**
 
