@@ -211,4 +211,7 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 **->** Có thể thấy rất nhiều thông số về logs khi chúng ta thiết lập và cấu hình trong file **fluent.conf**
 ### Để có thể tập trung và phân tích logs một cách dễ nhìn và trực quan nhất, chúng ta sẽ sử dụng Kibana
 Trên trang giao diện **Kibana**. Tại thanh tìm kiếm search: **Data Views**
+
 ![Kibana](https://user-images.githubusercontent.com/97789851/165927798-a63864cb-bbc5-420a-a9a2-8f5a8b0643fc.png)
+
+Nhấn **Create data view**. Nhìn góc bên phải bạn thấy 1 index mặc định **fluent.info** do cấu hình trong Fludentd. Copy và paste vào phần **Name** bên phải, phần **Timestamp field** sử dụng **@timestamp**. Cuối cùng nhấn vào **Create data view** bên dưới để tạo index
