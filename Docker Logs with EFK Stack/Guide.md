@@ -175,7 +175,7 @@ Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.3
 Cách sử dụng **Kibana** như thế nào thì trong những phần tới mình sẽ nói rõ hơn. Giao diện trực quan khá đẹp :v
 ![Kibana](https://user-images.githubusercontent.com/97789851/165914781-4f28ac7c-eef6-4fe6-971a-5a9728a9d3d1.png)
 
-## Bước 3 - Khởi động container Fluentd-Aggregator liên kết Elasticsearch (192.168.5.30)
+## Bước 4: Khởi động container Fluentd-Aggregator liên kết Elasticsearch (192.168.5.30)
 Bây giờ chúng ta sẽ khởi động **container chạy Fluentd-Aggregator**, thu thập logs và gửi chúng đến Elastcisearch
 
 Từ bước 1 chúng ta đã xây dựng image fluentd-aggregator nên giờ sẽ chạy image đó thành container để lấy và chuyển logs
@@ -197,3 +197,16 @@ Bạn sẽ thấy cả container **Elasticsearch**, **Kibana** và container **f
     509e61f7ac48   fluentd-aggregator    "/usr/local/bundle/b…"   16 minutes ago   Up 16 minutes   0.0.0.0:24224->24224/tcp, 0.0.0.0:24224->24224/udp, :::24224->24224/tcp, :::24224->24224/udp   fluentd-aggregator
     3921a53f91a2   kibana:8.1.1          "/bin/tini -- /usr/l…"   3 hours ago      Up 3 hours      0.0.0.0:5601->5601/tcp, :::5601->5601/tcp                                                      kibana
     577c7db077d8   elasticsearch:8.1.1   "/bin/tini -- /usr/l…"   23 hours ago     Up 5 hours      0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9300/tcp                                            elasticsearch
+
+## Bước 5: Xác nhận rằng Elasticsearch đang nhận sự kiện. Test index - chỉ mục trên Kibana:
+Hãy xác nhận rằng Elasticsearch đang nhận các sự kiện:
+```console
+curl -XGET 'http://localhost:9200/_all/_search?q=*'
+```
+Đầu ra phải chứa các sự kiện giống như sau:
+
+    {"took":1,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":9,"relation":"eq"},"max_score":1.0,"hits":[{"_index":"fluent.info","_id":"r3ecdIAB6Cq5dgvkXYbU","_score":1.0,"_source":{"pid":11,"ppid":1,"worker":0,"message":"starting fluentd worker pid=11 ppid=1 worker=0","@timestamp":"2022-04-29T16:17:20.209262808+07:00"}},{"_index":"fluent.info","_id":"sHecdIAB6Cq5dgvkXYbV","_score":1.0,"_source":{"port":24224,"bind":"0.0.0.0","message":"listening port port=24224 bind=\"0.0.0.0\"","@timestamp":"2022-04-29T16:17:20.209830444+07:00"}},{"_index":"fluent.info","_id":"sXecdIAB6Cq5dgvkXYbV","_score":1.0,"_source":{"worker":0,"message":"fluentd worker is now running worker=0","@timestamp":"2022-04-29T16:17:20.210894155+07:00"}},{"_index":"fluent.info","_id":"snejdIAB6Cq5dgvkFobh","_score":1.0,"_source":{"pid":10,"ppid":1,"worker":0,"message":"starting fluentd worker pid=10 ppid=1 worker=0","@timestamp":"2022-04-29T16:24:41.935037705+07:00"}},{"_index":"fluent.info","_id":"s3ejdIAB6Cq5dgvkFobh","_score":1.0,"_source":{"port":24224,"bind":"0.0.0.0","message":"listening port port=24224 bind=\"0.0.0.0\"","@timestamp":"2022-04-29T16:24:41.935544274+07:00"}},{"_index":"fluent.info","_id":"tHejdIAB6Cq5dgvkFobh","_score":1.0,"_source":{"worker":0,"message":"fluentd worker is now running worker=0","@timestamp":"2022-04-29T16:24:41.936044111+07:00"}},{"_index":"fluent.info","_id":"tXejdIAB6Cq5dgvk6oZi","_score":1.0,"_source":{"pid":10,"ppid":1,"worker":0,"message":"starting fluentd worker pid=10 ppid=1 worker=0","@timestamp":"2022-04-29T16:25:35.065391635+07:00"}},{"_index":"fluent.info","_id":"tnejdIAB6Cq5dgvk6oZi","_score":1.0,"_source":{"port":24224,"bind":"0.0.0.0","message":"listening port port=24224 bind=\"0.0.0.0\"","@timestamp":"2022-04-29T16:25:35.066373598+07:00"}},{"_index":"fluent.info","_id":"t3ejdIAB6Cq5dgvk6oZi","_score":1.0,"_source":{"worker":0,"message":"fluentd worker is now running worker=0","@timestamp":"2022-04-29T16:25:35.067103266+07:00"}}]}}la
+**->** Bạn có thể có khá nhiều sự kiện được ghi lại tùy thuộc vào thiết lập của bạn. Một sự kiện phải bắt đầu bằng **{"took":** và kết thúc bằng **thời gian**.
+Như kết quả này hiển thị, **Elasticsearch** đang nhận dữ liệu và rất nhiều thông số khác. (ID vùng chứa của bạn sẽ khác với ID được hiển thị ở trên!)
+
+### => Có thể thấy rất nhiều thông số về logs khi chúng ta thiết lập và cấu hình trong file **fluent.conf**. Chính vì vậy để có thể tập trung và phân tích logs một cách dễ nhìn và trực quan nhất, chúng ta sẽ sử dụng **Kibana**
