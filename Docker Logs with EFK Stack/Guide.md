@@ -131,6 +131,9 @@ Bạn sẽ thấy đầu ra như thế này:
 ### Kiểm tra thông số container Elasticsearch trên local
 Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.30:9200**
 
+Bạn sẽ thấy kết quả hiển thị tương tự như sau:
+
+
 ## Bước 3: Khởi động container Kibana kết nối Elasticsearch (192.168.5.30)
 **Chú ý: Version của Kibana và Elasticsearch phải cùng nhau**
 
