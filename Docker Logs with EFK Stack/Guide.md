@@ -23,6 +23,8 @@ sudo timedatectl set-timezone Asia/Ho_Chi_Minh
 ```
   
 ## Bước 1: Xây dựng image Fluentd (192.168.5.30)
+![Fluentd](https://user-images.githubusercontent.com/97789851/165901837-9a83ebeb-05c6-4092-8d67-689193a897d5.jpg)
+
 Tạo một thư mục mới cho các tài nguyên Fluentd Docker của bạn và chuyển vào đó:
 ```console
 sudo mkdir Fluent-Aggregator-Docker && cd Fluent-Aggregator-Docker
@@ -101,6 +103,8 @@ Bạn sẽ thấy đầu ra như thế này:
     ruby                 2.6.6     6d86b0beade7   13 months ago    840MB
 
 ## Bước 2: Khởi động container Elasticsearch (192.168.5.30)
+![Elasticsearch](https://user-images.githubusercontent.com/97789851/165902276-0abe366c-a6e8-4241-8836-a165ed42b0ac.jpg)
+
 Bây giờ, hãy quay lại thư mục gốc hoặc thư mục ưa thích của bạn cho container **Elasticsearch** và trong hướng dẫn này sẽ sử dụng **version 8.1.1**:
 ```console
 cd && docker pull elasticsearch:8.1.1
@@ -134,7 +138,10 @@ Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.3
 Bạn sẽ thấy kết quả hiển thị tương tự như sau:
 
 ![Elasticsearch](https://user-images.githubusercontent.com/97789851/165886662-5d7bc6d2-6a89-41f4-87a3-270e75fea0e7.png)
+
 ## Bước 3: Khởi động container Kibana kết nối Elasticsearch (192.168.5.30)
+![maxresdefault (2)](https://user-images.githubusercontent.com/97789851/165902554-a264c186-0ccb-46b9-8e78-ccad94c8ab47.jpg)
+
 **Chú ý: Version của Kibana và Elasticsearch phải cùng nhau**
 
 Tải **Kibana version 8.1.1** về server
