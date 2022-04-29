@@ -140,7 +140,7 @@ Bạn sẽ thấy kết quả hiển thị tương tự như sau:
 ![Elasticsearch](https://user-images.githubusercontent.com/97789851/165886662-5d7bc6d2-6a89-41f4-87a3-270e75fea0e7.png)
 
 ## Bước 3: Khởi động container Kibana kết nối Elasticsearch (192.168.5.30)
-![maxresdefault (2)](https://user-images.githubusercontent.com/97789851/165902554-a264c186-0ccb-46b9-8e78-ccad94c8ab47.jpg)
+![Kibana](https://user-images.githubusercontent.com/97789851/165902554-a264c186-0ccb-46b9-8e78-ccad94c8ab47.jpg)
 
 **Chú ý: Version của Kibana và Elasticsearch phải cùng nhau**
 
