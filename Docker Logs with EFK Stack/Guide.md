@@ -152,7 +152,7 @@ docker run -d --name kibana --link elasticsearch:es -p 5601:5601 -v /etc/localti
 
 **->** Có rất nhiều cách để khởi chạy **container Kibana** nhưng theo mình thì cách trên khá ngắn gọn và dễ hiểu. Mình sẽ chia sẻ thêm 1 số cách khác nếu bạn nào thích có thể tìm hiểu thêm:
 
-- **Cách 2:** Thay phần --link elasticsearch:es **->** -e "ELASTICSEARCH_URL=http://192.168.5.160:9200/" -e "ELASTICSEARCH_HOSTS=http://192.168.5.160:9200/"
+- **Cách 2:** Thay phần --link elasticsearch:es **->** -e "ELASTICSEARCH_URL=http://192.168.5.30:9200/" -e "ELASTICSEARCH_HOSTS=http://192.168.5.30:9200/"
   
 - **Cách 3:** Không dùng link và biến liên kết ELASTICSEARCH. Các bạn chỉ mở port 5601, ánh xạ time trên server rồi chạy. Nhưng khi check port 5601 trên local bạn sẽ phải config import link URL Elasticsearch để lấy **verification-code**, sau đó trên server truy cập vào container Kibana để **verification-code**. Khá là cồng kềnh, mới đầu khi tìm hiểu mình cũng làm như vậy =))
 
