@@ -172,7 +172,23 @@ docker ps
     577c7db077d8   elasticsearch:8.1.1   "/bin/tini -- /usr/l…"   21 hours ago     Up 3 hours      0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9300/tcp   elasticsearch
 Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.30:5601**
 
-Cách sử dụng Kibana như thế nào thì trong những phần tới mình sẽ nói rõ hơn. Giao diện trực quan khá đẹp :v
+Cách sử dụng **Kibana** như thế nào thì trong những phần tới mình sẽ nói rõ hơn. Giao diện trực quan khá đẹp :v
 ![Kibana](https://user-images.githubusercontent.com/97789851/165914781-4f28ac7c-eef6-4fe6-971a-5a9728a9d3d1.png)
 
 ## Bước 3 - Khởi động container Fluentd-Aggregator liên kết Elasticsearch (192.168.5.30)
+Bây giờ chúng ta sẽ khởi động **container chạy Fluentd-Aggregator**, thu thập logs và gửi chúng đến Elastcisearch
+
+Từ bước 1 chúng ta đã xây dựng image fluentd-aggregator nên giờ sẽ chạy image đó thành container để lấy và chuyển logs
+```console
+docker run -d --name fluentd-aggregator --link elasticsearch:es -p 24224:24224/tcp -p 24224:24224/udp -e "TZ=Asia/Ho_Chi_Minh" fluentd-aggregator
+```
+Trong đó:
+- Fluentd hoạt động trên port 24224
+- "TZ=Asia/Ho_Chi_Minh": để đa dạng mình sử dụng biến trong container để cập nhật lại múi giờ thay vì ánh xạ múi giờ từ server như các container trước. Các bạn có thể dùng lại cách ánh xạ vẫn đúng
+- ...
+
+**-> Cuối cùng**, hãy kiểm tra xem bộ thu thập logs EFK có đang chạy hay không bằng cách kiểm tra các quy trình Docker container đang hoạt động trên server:
+```console
+docker ps
+```
+Bạn sẽ thấy cả container **Elasticsearch**, **Kibana** và container **fluentd--aggregator** mới:
