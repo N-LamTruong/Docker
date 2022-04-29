@@ -133,7 +133,7 @@ Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.3
 
 Bạn sẽ thấy kết quả hiển thị tương tự như sau:
 
-![Untitled (2)](https://user-images.githubusercontent.com/97789851/165886662-5d7bc6d2-6a89-41f4-87a3-270e75fea0e7.png)
+![Elasticsearch](https://user-images.githubusercontent.com/97789851/165886662-5d7bc6d2-6a89-41f4-87a3-270e75fea0e7.png)
 ## Bước 3: Khởi động container Kibana kết nối Elasticsearch (192.168.5.30)
 **Chú ý: Version của Kibana và Elasticsearch phải cùng nhau**
 
@@ -141,9 +141,20 @@ Tải **Kibana version 8.1.1** về server
 ```console
 docker pull kibana:8.1.1
 ```
-Sau khi tải image Kibana xuống thành công, hãy **khởi chạy** container cùng tham số và sử dụng một số biến trong container Kibana
+Sau khi tải image Kibana xuống thành công, hãy **khởi chạy** container Kibana
 ```console
-docker run -d --name kibana -p 5601:5601 -v /etc/localtime:/etc/localtime:ro -e "ELASTICSEARCH_URL=http://192.168.5.30:9200/" -e "ELASTICSEARCH_HOSTS=http://192.168.5.30:9200/" kibana:8.1.1
+docker run -d --name kibana --link elasticsearch:es -p 5601:5601 -v /etc/localtime:/etc/localtime:ro kibana:8.1.1
 ```
+**-> Giải thích nhé :>**
+- --link elasticsearch:es liên kết container Elasticsearch với container Kibana
+- Port hoạt động mặc định của Kibana là 5601
+- ...
+
+**->** Có rất nhiều cách để khởi chạy **container Kibana** nhưng theo mình thì cách trên khá ngắn gọn và dễ hiểu. Mình sẽ chia sẻ thêm 1 số cách khác nếu bạn nào thích có thể tìm hiểu thêm:
+
+- **Cách 2:** Thay phần --link elasticsearch:es **->** -e "ELASTICSEARCH_URL=http://192.168.5.160:9200/" -e "ELASTICSEARCH_HOSTS=http://192.168.5.160:9200/"
+  
+- **Cách 3:** Không dùng link và biến liên kết ELASTICSEARCH. Các bạn chỉ mở port 5601, ánh xạ time trên server rồi chạy. Nhưng khi check port 5601 trên local bạn sẽ phải config import link URL Elasticsearch để lấy **verification-code**, sau đó trên server truy cập vào container Kibana để **verification-code**. Khá là cồng kềnh, mới đầu khi tìm hiểu mình cũng làm như vậy =))
+
 
 ## Bước 3 - Khởi động container Fluentd-Aggregator liên kết Elasticsearch (192.168.5.30)
