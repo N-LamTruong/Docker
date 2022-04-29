@@ -170,8 +170,9 @@ docker ps
     CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                                 NAMES
     3921a53f91a2   kibana:8.1.1          "/bin/tini -- /usr/l…"   59 minutes ago   Up 59 minutes   0.0.0.0:5601->5601/tcp, :::5601->5601/tcp             kibana
     577c7db077d8   elasticsearch:8.1.1   "/bin/tini -- /usr/l…"   21 hours ago     Up 3 hours      0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9300/tcp   elasticsearch
-Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.30:5601**. 
+Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.30:5601**
 
 Cách sử dụng Kibana như thế nào thì trong những phần tới mình sẽ nói rõ hơn. Giao diện trực quan khá đẹp :v
+![Kibana](https://user-images.githubusercontent.com/97789851/165914781-4f28ac7c-eef6-4fe6-971a-5a9728a9d3d1.png)
 
 ## Bước 3 - Khởi động container Fluentd-Aggregator liên kết Elasticsearch (192.168.5.30)
