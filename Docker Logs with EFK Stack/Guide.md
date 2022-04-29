@@ -209,4 +209,4 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 **->** Bạn có thể có khá nhiều sự kiện được ghi lại tùy thuộc vào thiết lập của bạn. Một sự kiện phải bắt đầu bằng **{"took":** và kết thúc bằng **thời gian**. Như kết quả này hiển thị, **Elasticsearch** đang nhận dữ liệu và rất nhiều thông số khác
 
 **->** Có thể thấy rất nhiều thông số về logs khi chúng ta thiết lập và cấu hình trong file **fluent.conf**
-### Chính vì vậy để có thể tập trung và phân tích logs một cách dễ nhìn và trực quan nhất, chúng ta sẽ sử dụng Kibana
+### Để có thể tập trung và phân tích logs một cách dễ nhìn và trực quan nhất, chúng ta sẽ sử dụng Kibana
