@@ -192,3 +192,8 @@ Trong đó:
 docker ps
 ```
 Bạn sẽ thấy cả container **Elasticsearch**, **Kibana** và container **fluentd--aggregator** mới:
+
+    CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                                                                          NAMES
+    509e61f7ac48   fluentd-aggregator    "/usr/local/bundle/b…"   16 minutes ago   Up 16 minutes   0.0.0.0:24224->24224/tcp, 0.0.0.0:24224->24224/udp, :::24224->24224/tcp, :::24224->24224/udp   fluentd-aggregator
+    3921a53f91a2   kibana:8.1.1          "/bin/tini -- /usr/l…"   3 hours ago      Up 3 hours      0.0.0.0:5601->5601/tcp, :::5601->5601/tcp                                                      kibana
+    577c7db077d8   elasticsearch:8.1.1   "/bin/tini -- /usr/l…"   23 hours ago     Up 5 hours      0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9300/tcp                                            elasticsearch
