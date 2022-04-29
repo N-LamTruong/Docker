@@ -163,11 +163,15 @@ docker run -d --name kibana --link elasticsearch:es -p 5601:5601 -v /etc/localti
   
 - **Cách 3:** Không dùng link và biến liên kết ELASTICSEARCH. Các bạn chỉ mở port 5601, ánh xạ time trên server rồi chạy. Nhưng khi check port 5601 trên local bạn sẽ phải config import link URL Elasticsearch để lấy **verification-code**, sau đó trên server truy cập vào container Kibana để **verification-code**. Khá là cồng kềnh, mới đầu khi tìm hiểu mình cũng làm như vậy =))
 ### Kiểm tra container Kibana và check giao diện trên local
+Xem container đã hoạt động chưa
 ```console
 docker ps
 ```
     CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                                 NAMES
     3921a53f91a2   kibana:8.1.1          "/bin/tini -- /usr/l…"   59 minutes ago   Up 59 minutes   0.0.0.0:5601->5601/tcp, :::5601->5601/tcp             kibana
     577c7db077d8   elasticsearch:8.1.1   "/bin/tini -- /usr/l…"   21 hours ago     Up 3 hours      0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9300/tcp   elasticsearch
+Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.30:5601**. 
+
+Cách sử dụng Kibana như thế nào thì trong những phần tới mình sẽ nói rõ hơn. Giao diện trực quan khá đẹp :v
 
 ## Bước 3 - Khởi động container Fluentd-Aggregator liên kết Elasticsearch (192.168.5.30)
