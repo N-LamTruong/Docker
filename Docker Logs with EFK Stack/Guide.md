@@ -210,3 +210,4 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 
 **->** Có thể thấy rất nhiều thông số về logs khi chúng ta thiết lập và cấu hình trong file **fluent.conf**
 ### Để có thể tập trung và phân tích logs một cách dễ nhìn và trực quan nhất, chúng ta sẽ sử dụng Kibana
+Trên trang giao diện **Kibana**. Tại thanh tìm kiếm search: **Data Views**
