@@ -227,10 +227,24 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 ## Bước 6: Setup và config server gửi logs (192.168.5.40)
 **Tiếp theo mình sẽ hướng dẫn các bạn cài server để gửi logs đến EFK**
 
-**->** Vì mục đích của hướng dẫn này là giám sát logs sinh ra từ container Docker nên server gửi logs sẽ cài 1 số dịch vụ và được đọc bởi fluentd. Đây là server gửi logs nên mình sẽ đặt tên cho thư mục chứa các tài nguyên cài đặt là fluent-forwarder
+**->** Vì mục đích của hướng dẫn này là giám sát logs sinh ra từ container Docker nên server gửi logs sẽ cài 1 số dịch vụ và được đọc bởi **fluentd**. Đây là server gửi logs nên mình sẽ đặt tên cho thư mục chứa các tài nguyên cài đặt là **fluent-forwarder**
 
 Tương tự như **bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại
 
 Tạo thư mục **Fluent-Forwarder-Docker**, trong đó tạo **Dockerfile** và tệp **fluent.conf**
-
+```console
+sudo mkdir Fluent-Forwarder-Docker && cd Fluent-Forwarder-Docker
+```
+```console
+sudo nano Dockerfile
+```
 **Dockerfile** sẽ lược bỏ 2 plugin vì sẽ gửi logs trực tiêp đến **fluentd-aggregator**
+```console
+FROM ruby:2.6.6
+RUN apt-get update
+RUN gem install fluentd -v "~>1.14.0"
+RUN mkdir /etc/fluent
+RUN apt-get install libcurl4-gnutls-dev -y
+ADD ./fluent.conf /etc/fluent/
+ENTRYPOINT ["/usr/local/bundle/bin/fluentd", "-c", "/etc/fluent/fluent.conf"]
+```
