@@ -220,7 +220,7 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 
 - Tại mục menu chính, phần **Analytics** chọn **Discover** để xem chi tiết logs của index **fluent.info** vừa tạo. Tại đây bạn có thể thấy các thông số như: thời gian, thông tin hoạt động của fluent, id,... Bạn có thể chọn **Try Document Explorer** và bỏ tích phần **doc_table:legacy** để nhìn giao diện logs một cách trực quan nhất
 
-![image](https://user-images.githubusercontent.com/97789851/166153151-669bd388-7ed6-4e6a-b2e7-91852b8b1f7f.png)
+![Kibana](https://user-images.githubusercontent.com/97789851/166153151-669bd388-7ed6-4e6a-b2e7-91852b8b1f7f.png)
 
 **-> Như vậy cơ bản là đã setup xong server cài EFK nhận logs 192.168.5.30**
 
@@ -239,6 +239,8 @@ docker run -d --name nginx -p 80:80 -v /etc/localtime:/etc/localtime:ro nginx:la
 Bạn có thể kiểm tra dịch vụ **Nginx** hoạt động hay chưa bằng cách truy cập trên browser: **192.168.5.40:80**
 
 Bạn sẽ thấy kết quả hiển thị tương tự như sau:
+
+![Nginx](https://user-images.githubusercontent.com/97789851/166155990-f66cbf7c-fe23-4469-8b9c-809a5197786e.png)
 
 Tương tự như **bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại. Tạo thư mục **Fluent-Forwarder-Docker**, trong đó tạo **Dockerfile** và tệp **fluent.conf**
 ```console
