@@ -225,4 +225,6 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 **-> Như vậy cơ bản là đã setup xong server cài EFK nhận logs 192.168.5.30**
 
 ## Bước 6: Setup và config server gửi logs (192.168.5.40)
-Tiếp theo mình sẽ hướng dẫn các bạn cài server để gửi logs đến EFK
+**Tiếp theo mình sẽ hướng dẫn các bạn cài server để gửi logs đến EFK**
+
+Tương tự như **bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại
