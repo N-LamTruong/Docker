@@ -219,3 +219,5 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 ![Untitled](https://user-images.githubusercontent.com/97789851/165929552-3f053c28-077d-4aee-9f24-31a740b5061c.png)
 
 - Tại mục menu chính, phần **Analytics** chọn **Discover** để xem chi tiết logs của index **fluent.info** vừa tạo. Tại đây bạn có thể thấy các thông số như: thời gian, thông tin hoạt động của fluent, id,... Bạn có thể chọn **Try Document Explorer** và bỏ tích phần **doc_table:legacy** để nhìn giao diện logs một cách trực quan nhất
+
+![image](https://user-images.githubusercontent.com/97789851/166153151-669bd388-7ed6-4e6a-b2e7-91852b8b1f7f.png)
