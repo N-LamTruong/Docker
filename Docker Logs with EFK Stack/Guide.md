@@ -227,4 +227,6 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 ## Bước 6: Setup và config server gửi logs (192.168.5.40)
 **Tiếp theo mình sẽ hướng dẫn các bạn cài server để gửi logs đến EFK**
 
+**->** Vì mục đích của hướng dẫn này là giám sát logs sinh ra từ container Docker nên server gửi logs sẽ cài 1 số dịch vụ và được đọc bởi fluentd. Đây là server gửi logs nên mình sẽ đặt tên là fluent-forwarder
+
 Tương tự như **bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại
