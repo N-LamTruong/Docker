@@ -222,14 +222,14 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 
 ![Kibana](https://user-images.githubusercontent.com/97789851/166153151-669bd388-7ed6-4e6a-b2e7-91852b8b1f7f.png)
 
-**-> Như vậy cơ bản là đã setup xong server cài EFK nhận logs 192.168.5.30**
+**-> Như vậy cơ bản là đã setup và config xong server cài EFK nhận logs 192.168.5.30**
 
 # Phần II - Setup và config server gửi logs (192.168.5.40)
-## Bước 1: 
 **Tiếp theo mình sẽ hướng dẫn các bạn cài server để gửi logs đến EFK**
 
 **->** Vì mục đích của hướng dẫn này là giám sát logs sinh ra từ container Docker nên server gửi logs sẽ cài 1 số dịch vụ (ví dụ dịch vụ **Nginx**) và được đọc bởi **fluentd**. Đây là server gửi logs nên mình sẽ đặt tên cho thư mục chứa các tài nguyên cài đặt là **fluent-forwarder**
 
+## Bước 1: Sử dụng dịch vụ Nginx bằng Docker
 Đầu tiên hãy chỉnh múi giờ cho server như các bước **Thiết lập cần thiết khi bắt đầu** ở đàu hướng dẫn, sau đó tải xuống **image Nginx** và khởi động nó
 ```console
 docker pull nginx
