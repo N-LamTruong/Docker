@@ -298,8 +298,8 @@ Tệp **fluent.conf** sẽ config như sau. Bạn có thể sao chép chính xá
   pos_file  /var/log/docker-nginx.pos
   tag docker.nginx
   <parse>
-    localtime true
     @type json
+    localtime true
     time_type string
     unmatched_lines
   </parse>
@@ -309,3 +309,20 @@ Tệp **fluent.conf** sẽ config như sau. Bạn có thể sao chép chính xá
   @type stdout
 </filter>
 ```
+**-> Phân tích cú pháp cấu hình:**
+
+**match**
+- **@type** sử dụng **forward** để gửi logs
+- **send_timeout**: Thời gian chờ khi gửi logs
+- **recover_wait**: Thời gian đợi trước khi chấp nhận khôi phục lỗi từ phía server
+- **hard_timeout**: Thời gian chờ này sử dụng để phát hiện lỗi từ phía server. Giá trị mặc định bằng tham số **send_timeout**
+- Phần trong **< server >** để cho Fluentd biết nó gửi logs đến đâu
+
+**source**
+- **@type** bắt buộc phải là **tail**, cho phép Fluentd đọc các sự kiện từ phần đuôi của tệp lưu logs
+- **path** đường dẫn để đọc logs. Nếu có nhiều dịch vụ, mỗi dịch vụ 1 đường dẫn thì dùng dấu phẩy **','** để ngăn cách
+- **pos_file** nên sử dụng vì Fluentd sẽ ghi lại vị trí mà nó đọc logs lần cuối từ tệp này
+- **tag**: Tên của index khi hiện thị trên Kibana
+- Phần trong **< parse >** để kích hoạt cho các plugin hỗ trợ phân tích cú pháp của file logs. Cụ thể trong hướng dẫn này logs là file **json**. Tiếp đến **unmatched_lines** là 1 plugin phân tích file **json**
+
+**filter** dùng filter stdout in ra các sự kiện đầu ra tiêu chuẩn
