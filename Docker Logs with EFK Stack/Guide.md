@@ -358,3 +358,5 @@ Bạn sẽ thấy kết quả tương tự:
     0c4d9eb73117   nginx:latest        "/docker-entrypoint.…"   2 days ago    Up 3 hours   0.0.0.0:80->80/tcp, :::80->80/tcp                                                              nginx
 
 **-> Đến đây chúng ta đã setup và config xong server gửi logs 192.168.5.40**
+
+# Phần III - Test logs trên Kibaba
