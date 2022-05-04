@@ -251,6 +251,11 @@ sudo ls -l /var/lib/docker/containers/
 - Bạn sẽ thấy 1 thư mục tương tự như sau:
 
       drwx--x--- 4 root root 4096 May  4 14:22 0c4d9eb7311717f166289342b743391d1a499a1e0f9b1364f5558e3e5a6bf9c6
+- Logs sinh ra từ Docker sẽ được lưu mặc định dưới dạng **json.log**. Bạn có thể xem cụ thể file logs bằng câu lệnh tương tự như trên nhưng vào sâu hơn
+```console
+sudo ls -l /var/lib/docker/containers/0c4d9eb7311717f166289342b743391d1a499a1e0f9b1364f5558e3e5a6bf9c6
+```
+### Ở bước tiếp theo chúng ta sẽ sử dụng đến đường dẫn logs này
 ## Bước 2: Xây dựng image Fluentd gửi logs
 Tương tự như **Phần I - Bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại
 
