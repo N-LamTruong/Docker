@@ -277,3 +277,34 @@ ADD ./fluent.conf /etc/fluent/
 ENTRYPOINT ["/usr/local/bundle/bin/fluentd", "-c", "/etc/fluent/fluent.conf"]
 ```
 Tệp **fluent.conf** sẽ config như sau. Bạn có thể sao chép chính xác tệp này:
+```console
+<match *.**>
+  @type forward
+  send_timeout 60s
+  recover_wait 10s
+  hard_timeout 60s
+  <server>
+    name log_EFK
+    host 192.168.5.30
+    port 24224
+    weight 60
+  </server>
+</match>
+
+<source>
+  @type tail
+  path  /var/lib/docker/containers/0c4d9eb7311717f166289342b743391d1a499a1e0f9b1364f5558e3e5a6bf9c6/0c4d9eb7311717f166289342b743391d1a499a1e0f9b1364f5558e3e5a6bf9c6-json.log
+  pos_file  /var/log/docker-nginx.pos
+  tag docker.nginx
+  <parse>
+    localtime true
+    @type json
+    time_type string
+    unmatched_lines
+  </parse>
+</source>
+
+<filter *.**>
+  @type stdout
+</filter>
+```
