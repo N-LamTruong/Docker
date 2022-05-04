@@ -229,7 +229,7 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 
 **->** Vì mục đích của hướng dẫn này là giám sát logs sinh ra từ container Docker nên server gửi logs sẽ cài 1 số dịch vụ (ví dụ dịch vụ **Nginx**) và được đọc bởi **fluentd**. Đây là server gửi logs nên mình sẽ đặt tên cho thư mục chứa các tài nguyên cài đặt là **fluent-forwarder**
 
-Đầu tiên hãy chỉnh múi giờ cho server như các bước **thiết lập ban đầu**, sau đó tải xuống **image Nginx** và khởi động nó
+Đầu tiên hãy chỉnh múi giờ cho server như các bước **Thiết lập cần thiết khi bắt đầu** ở đàu hướng dẫn, sau đó tải xuống **image Nginx** và khởi động nó
 ```console
 docker pull nginx
 ```
