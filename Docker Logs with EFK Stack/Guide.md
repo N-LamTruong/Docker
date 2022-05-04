@@ -243,7 +243,10 @@ Bạn sẽ thấy kết quả hiển thị tương tự như sau:
 
 ![Nginx](https://user-images.githubusercontent.com/97789851/166155990-f66cbf7c-fe23-4469-8b9c-809a5197786e.png)
 
-Tương tự như **bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại. Tạo thư mục **Fluent-Forwarder-Docker**, trong đó tạo **Dockerfile** và tệp **fluent.conf**
+## Bước 2: Xây dựng image Fluentd gửi logs
+Tương tự như **Phần I - Bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại.
+
+Tạo thư mục **Fluent-Forwarder-Docker**, trong đó tạo **Dockerfile** và tệp **fluent.conf**
 ```console
 sudo mkdir Fluent-Forwarder-Docker && cd Fluent-Forwarder-Docker
 ```
