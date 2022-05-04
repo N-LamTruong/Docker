@@ -16,7 +16,7 @@ Khi bạn đưa các containers Docker vào sử dụng, bạn sẽ thấy nhu c
 
     **192.168.5.30 cài EFK nhận logs** và **192.168.5.40 gửi logs**
 * Sử dụng Ubuntu server và có quyền root
-* Docker được cài đặt trên máy chủ của bạn bằng cách làm theo Cách cài đặt và sử dụng Docker trên Ubuntu
+* Docker được cài đặt trên máy chủ của bạn
 * Cập nhật múi giờ trên server Ubuntu:
 ```console
 sudo timedatectl set-timezone Asia/Ho_Chi_Minh
@@ -368,7 +368,7 @@ Tương tự **Phần I - Bước 5** do đó mình sẽ thao tác nhanh
 
 - Sau đó chuyển sang **Discover** để xem thông tin logs của dịch vụ **container Nginx**
 
-![image](https://user-images.githubusercontent.com/97789851/166665785-b604e195-7fea-4115-981f-250fe266f195.png)
+![Kibana](https://user-images.githubusercontent.com/97789851/166665785-b604e195-7fea-4115-981f-250fe266f195.png)
 
 **-> Phần về thu thập logs đến đây là kết thúc**
 
