@@ -21,8 +21,8 @@ Khi bạn đưa các containers Docker vào sử dụng, bạn sẽ thấy nhu c
 ```console
 sudo timedatectl set-timezone Asia/Ho_Chi_Minh
 ```
-# Phần 1: Setup và config server tập trung logs EFK (192.168.5.30)  
-## Bước 1: Xây dựng image Fluentd (192.168.5.30)
+# Phần I - Setup và config server tập trung logs EFK (192.168.5.30)  
+## Bước 1: Xây dựng image Fluentd
 ![Fluentd](https://user-images.githubusercontent.com/97789851/165901837-9a83ebeb-05c6-4092-8d67-689193a897d5.jpg)
 
 Tạo một thư mục mới cho các tài nguyên Fluentd Docker của bạn và chuyển vào đó:
@@ -102,7 +102,7 @@ Bạn sẽ thấy đầu ra như thế này:
     fluentd-aggregator   latest    858465f09f14   17 seconds ago   898MB
     ruby                 2.6.6     6d86b0beade7   13 months ago    840MB
 
-## Bước 2: Khởi động container Elasticsearch (192.168.5.30)
+## Bước 2: Khởi động container Elasticsearch
 ![Elasticsearch](https://user-images.githubusercontent.com/97789851/165902276-0abe366c-a6e8-4241-8836-a165ed42b0ac.jpg)
 
 Bây giờ, hãy quay lại thư mục gốc hoặc thư mục ưa thích của bạn cho container **Elasticsearch** và trong hướng dẫn này sẽ sử dụng **version 8.1.1**:
@@ -139,7 +139,7 @@ Bạn sẽ thấy kết quả hiển thị tương tự như sau:
 
 ![Elasticsearch](https://user-images.githubusercontent.com/97789851/165886662-5d7bc6d2-6a89-41f4-87a3-270e75fea0e7.png)
 
-## Bước 3: Khởi động container Kibana kết nối Elasticsearch (192.168.5.30)
+## Bước 3: Khởi động container Kibana kết nối Elasticsearch
 ![Kibana](https://user-images.githubusercontent.com/97789851/165902554-a264c186-0ccb-46b9-8e78-ccad94c8ab47.jpg)
 
 **Chú ý: Version của Kibana và Elasticsearch phải cùng nhau**
@@ -175,7 +175,7 @@ Mở trình duyệt browser trên máy của bạn và truy cập: **192.168.5.3
 Cách sử dụng **Kibana** như thế nào thì trong những phần tới mình sẽ nói rõ hơn. Giao diện trực quan khá đẹp :v
 ![Kibana](https://user-images.githubusercontent.com/97789851/165914781-4f28ac7c-eef6-4fe6-971a-5a9728a9d3d1.png)
 
-## Bước 4: Khởi động container Fluentd-Aggregator liên kết Elasticsearch (192.168.5.30)
+## Bước 4: Khởi động container Fluentd-Aggregator liên kết Elasticsearch
 Bây giờ chúng ta sẽ khởi động **container chạy Fluentd-Aggregator**, thu thập logs và gửi chúng đến Elastcisearch
 
 Từ bước 1 chúng ta đã xây dựng image fluentd-aggregator nên giờ sẽ chạy image đó thành container để lấy và chuyển logs
@@ -224,7 +224,8 @@ curl -XGET 'http://localhost:9200/_all/_search?q=*'
 
 **-> Như vậy cơ bản là đã setup xong server cài EFK nhận logs 192.168.5.30**
 
-## Bước 6: Setup và config server gửi logs (192.168.5.40)
+# Phần II - Setup và config server gửi logs (192.168.5.40)
+## Bước 1: 
 **Tiếp theo mình sẽ hướng dẫn các bạn cài server để gửi logs đến EFK**
 
 **->** Vì mục đích của hướng dẫn này là giám sát logs sinh ra từ container Docker nên server gửi logs sẽ cài 1 số dịch vụ (ví dụ dịch vụ **Nginx**) và được đọc bởi **fluentd**. Đây là server gửi logs nên mình sẽ đặt tên cho thư mục chứa các tài nguyên cài đặt là **fluent-forwarder**
