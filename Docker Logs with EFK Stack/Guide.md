@@ -243,8 +243,16 @@ Bạn sẽ thấy kết quả hiển thị tương tự như sau:
 
 ![Nginx](https://user-images.githubusercontent.com/97789851/166155990-f66cbf7c-fe23-4469-8b9c-809a5197786e.png)
 
+**->** Sau khi **container Nginx** đã hoạt động. Mặc định logs sẽ được ghi vào dường dẫn **/var/lib/docker/containers/**
+- Kiểm tra bằng lệnh: 
+```console
+sudo ls -l /var/lib/docker/containers/
+```
+- Bạn sẽ thấy 1 thư mục tương tự như sau:
+
+      drwx--x--- 4 root root 4096 May  4 14:22 0c4d9eb7311717f166289342b743391d1a499a1e0f9b1364f5558e3e5a6bf9c6
 ## Bước 2: Xây dựng image Fluentd gửi logs
-Tương tự như **Phần I - Bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại.
+Tương tự như **Phần I - Bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại
 
 Tạo thư mục **Fluent-Forwarder-Docker**, trong đó tạo **Dockerfile** và tệp **fluent.conf**
 ```console
