@@ -360,7 +360,18 @@ Bạn sẽ thấy kết quả tương tự:
 **-> Đến đây chúng ta đã setup và config xong server gửi logs 192.168.5.40**
 
 # Phần III - Test logs trên Kibaba
-Tương tự **Phần I - Bước 5** do đó mình sẽ thao tác nhanh. Tạo index **docker.nginx**
+Tương tự **Phần I - Bước 5** do đó mình sẽ thao tác nhanh
+
+- Tạo index **docker.nginx**
+
 ![Kibana](https://user-images.githubusercontent.com/97789851/166665070-e5faeb84-8b19-4c0c-a81e-7029fe50948c.png)
-Sau đó chuyển sang **Discover** để xem thông tin logs của dịch vụ **container Nginx**
+
+- Sau đó chuyển sang **Discover** để xem thông tin logs của dịch vụ **container Nginx**
+
 ![image](https://user-images.githubusercontent.com/97789851/166665785-b604e195-7fea-4115-981f-250fe266f195.png)
+
+**-> Phần về thu thập logs đến đây là kết thúc**
+
+### Để phân tích logs và sử dụng các tính năng khác giúp lọc dữ liệu logs trên Kibana các bạn sẽ phải tự tìm hiểu. Nếu có thời gian mình sẽ tiếp tục 1 series về phân tính logs, regex logs, authentication EK,...
+
+## Chúc các bạn thành công :>
