@@ -283,6 +283,7 @@ Tệp **fluent.conf** sẽ config như sau. Bạn có thể sao chép chính xá
   send_timeout 60s
   recover_wait 10s
   hard_timeout 60s
+  flush_interval 5s
   <server>
     name log_EFK
     host 192.168.5.30
