@@ -21,7 +21,7 @@ Khi bạn đưa các containers Docker vào sử dụng, bạn sẽ thấy nhu c
 ```console
 sudo timedatectl set-timezone Asia/Ho_Chi_Minh
 ```
-  
+# Phần 1: Setup và config server tập trung logs EFK (192.168.5.30)  
 ## Bước 1: Xây dựng image Fluentd (192.168.5.30)
 ![Fluentd](https://user-images.githubusercontent.com/97789851/165901837-9a83ebeb-05c6-4092-8d67-689193a897d5.jpg)
 
