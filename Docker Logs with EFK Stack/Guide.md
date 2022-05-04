@@ -357,4 +357,4 @@ Bạn sẽ thấy kết quả tương tự:
     d38149be544e   fluentd-forwarder   "/usr/local/bundle/b…"   2 hours ago   Up 2 hours   0.0.0.0:24224->24224/tcp, 0.0.0.0:24224->24224/udp, :::24224->24224/tcp, :::24224->24224/udp   fluentd-forwarder
     0c4d9eb73117   nginx:latest        "/docker-entrypoint.…"   2 days ago    Up 3 hours   0.0.0.0:80->80/tcp, :::80->80/tcp                                                              nginx
 
-**-> Đến đây chúng ta đã setup và config xong server server gửi logs 192.168.5.40**
+**-> Đến đây chúng ta đã setup và config xong server gửi logs 192.168.5.40**
