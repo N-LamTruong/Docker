@@ -256,7 +256,7 @@ sudo ls -l /var/lib/docker/containers/
 sudo ls -l /var/lib/docker/containers/0c4d9eb7311717f166289342b743391d1a499a1e0f9b1364f5558e3e5a6bf9c6
 ```
 ### Ở bước tiếp theo chúng ta sẽ sử dụng đến đường dẫn logs này
-## Bước 2: Xây dựng image Fluentd gửi logs
+## Bước 2: Xây dựng và khởi động image Fluentd gửi logs 
 Tương tự như **Phần I - Bước 1** nên mình sẽ giải thích ngắn gọn hơn, nếu khó hiểu các bạn có thể kéo lên trên xem lại
 
 Tạo thư mục **Fluent-Forwarder-Docker**, trong đó tạo **Dockerfile** và tệp **fluent.conf**
@@ -326,3 +326,33 @@ Tệp **fluent.conf** sẽ config như sau. Bạn có thể sao chép chính xá
 - Phần trong **< parse >** để kích hoạt cho các plugin hỗ trợ phân tích cú pháp của file logs. Cụ thể trong hướng dẫn này logs là file **json**. Tiếp đến **unmatched_lines** là 1 plugin phân tích file **json**
 
 **filter** dùng filter stdout in ra các sự kiện đầu ra tiêu chuẩn
+
+Xây dựng image **Fluentd Docker** của bạn, đặt tên image là **fluentd-forwarder**:
+```console
+docker build -t fluentd-forwarder .
+```
+Quá trình này sẽ mất vài phút để hoàn thành. Kiểm tra xem bạn đã tạo thành công các image chưa:
+```console
+docker image ls
+```
+Bạn sẽ thấy đầu ra như thế này:
+
+    REPOSITORY          TAG       IMAGE ID       CREATED         SIZE
+    fluentd-forwarder   latest    6fabc838ed11   2 hours ago     893MB
+    nginx               latest    fa5269854a5e   13 days ago     142MB
+    ruby                2.6.6     6d86b0beade7   13 months ago   840MB
+
+Khởi động **container fluentd-forwarder** để gửi logs đến server EFK. Ánh xạ thư mục lưu logs của container trên server vào container fluentd-forwarder,...Dùng lệnh sau:
+```console
+docker run -d --name fluentd-forwarder -v /var/lib/docker/containers:/var/lib/docker/containers -p 24224:24224/tcp -p 24224:24224/udp -e "TZ=Asia/Ho_Chi_Minh" fluentd-forwarder
+```
+
+**->** Kiểm tra xem container **Fluentd** và **Nginx** có đang chạy hay không:
+```console
+docker ps
+```
+Bạn sẽ thấy kết quả tương tự:
+
+    CONTAINER ID   IMAGE               COMMAND                  CREATED       STATUS       PORTS                                                                                          NAMES
+    d38149be544e   fluentd-forwarder   "/usr/local/bundle/b…"   2 hours ago   Up 2 hours   0.0.0.0:24224->24224/tcp, 0.0.0.0:24224->24224/udp, :::24224->24224/tcp, :::24224->24224/udp   fluentd-forwarder
+    0c4d9eb73117   nginx:latest        "/docker-entrypoint.…"   2 days ago    Up 3 hours   0.0.0.0:80->80/tcp, :::80->80/tcp                                                              nginx
