@@ -16,7 +16,7 @@ Khi bạn đưa các containers Docker vào sử dụng, bạn sẽ thấy nhu c
 
     **192.168.5.30 cài EFK nhận logs** và **192.168.5.40 gửi logs**
 * Sử dụng Ubuntu server và có quyền root
-* Docker được cài đặt trên máy chủ của bạn
+* Docker được cài đặt trên máy chủ của bạn bằng cách làm theo **[Install Docker on Ubuntu](https://github.com/LamTruong-DevOps/Docker#readme)**
 * Cập nhật múi giờ trên server Ubuntu:
 ```console
 sudo timedatectl set-timezone Asia/Ho_Chi_Minh
