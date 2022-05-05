@@ -1,4 +1,4 @@
-# Install Docker on Linux
+# Docker on Linux
 
 ![image](https://user-images.githubusercontent.com/97789851/166855507-abb04309-989a-4b96-b1de-97ff8b0d50c8.png)
 
@@ -9,4 +9,35 @@
 
 **=> Ai dùng Docker?** Docker mang lại lợi ích cho cả **lập trình viên** lẫn **quản trị hệ thống**!!
 
-a
+## Install Docker on Ubuntu
+1. Chạy từng lệnh sau để cài đặt:
+```console
+sudo apt update
+```
+```console
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+```
+```console
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+```console
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+```
+```console
+sudo apt update
+```
+```console
+apt-cache policy docker-ce
+```
+```console
+sudo apt install docker-ce -y
+```
+2. Sau đó kiểm tra **dịch vụ Docker** đã hoạt động hay chưa bằng lệnh:
+```console
+sudo systemctl status docker
+```
+3. Sau khi cài đặt, bạn có thể cho user hiện tại thuộc **group docker**, để khi gõ lệnh không cần xin quyền **sudo**
+```console
+sudo usermod -aG docker $USER
+```
+- Trong đó: **$USER** là tên user
