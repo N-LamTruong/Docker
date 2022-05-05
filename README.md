@@ -8,3 +8,5 @@
 **Docker** gần giống như máy ảo (nếu các bạn đã từng sử dụng qua các nền tảng ảo hóa như **Virtual Box**, **VMWare**). Nhưng điểm khác là thay vì tạo ra toàn bộ hệ thống (ảo hóa), **Docker** lại cho phép ứng dụng sử dụng nhân của hệ điều hành đang chạy Docker để chạy ứng dụng bằng cách bổ sung thêm các thành phần còn thiếu cung cấp bởi container. Cách này làm tăng hiệu xuất và giảm kích thước ứng dụng.
 
 **=> Ai dùng Docker?** Docker mang lại lợi ích cho cả **lập trình viên** lẫn **quản trị hệ thống**!!
+
+a
