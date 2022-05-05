@@ -321,7 +321,7 @@ Tệp **fluent.conf** sẽ config như sau. Bạn có thể sao chép chính xá
 **source**
 - **@type** bắt buộc phải là **tail**, cho phép Fluentd đọc các sự kiện từ phần đuôi của tệp lưu logs
 - **path** đường dẫn để đọc logs. Nếu có nhiều dịch vụ, mỗi dịch vụ 1 đường dẫn thì dùng dấu phẩy **','** để ngăn cách
-- **pos_file** nên sử dụng vì Fluentd sẽ ghi lại vị trí mà nó đọc logs lần cuối từ tệp này
+- **pos_file** nên sử dụng vì Fluentd sẽ ghi lại **vị trí** mà nó đọc logs lần cuối từ tệp này
 - **tag**: Tên của index khi hiện thị trên Kibana
 - Phần trong **< parse >** để kích hoạt cho các plugin hỗ trợ phân tích cú pháp của file logs. Cụ thể trong hướng dẫn này logs là file **json**. Tiếp đến **unmatched_lines** là 1 plugin phân tích file **json**
 
