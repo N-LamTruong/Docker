@@ -40,6 +40,5 @@ sudo systemctl status docker
 ```console
 sudo usermod -aG docker $USER
 ```
-- Trong đó: **$USER** là tên user
 
 ### => Để có hiệu lực bạn cần **Logout** user đó khỏi server. Sau đó **Login** lại.
