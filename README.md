@@ -9,36 +9,64 @@
 
 **=> Ai dùng Docker?** Docker mang lại lợi ích cho cả **lập trình viên** lẫn **quản trị hệ thống**!!
 
-## Install Docker on Ubuntu
-1. Chạy từng lệnh sau để cài đặt:
-```console
-sudo apt update
-```
-```console
-sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
-```
-```console
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-```
-```console
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-```
-```console
-sudo apt update
-```
-```console
-apt-cache policy docker-ce
-```
-```console
-sudo apt install docker-ce -y
-```
-2. Sau đó kiểm tra **dịch vụ Docker** đã hoạt động hay chưa bằng lệnh:
-```console
-sudo systemctl status docker
-```
-3. Sau khi cài đặt, bạn có thể cho user hiện tại thuộc **group docker**, để khi gõ lệnh không cần xin quyền **sudo**
-```console
-sudo usermod -aG docker $USER
-```
+## Install Docker on Ubuntu 20.04
+1. Update hệ thống:
+    ```console
+    sudo apt update
+    ```
+2. Cài đặt các gói phụ thuộc:
+    ```console
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+    ```
+3. Add key docker:
+    ```console
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    ```
+4. Add repo docker:
+    ```console
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    ```
+5. Update lại hệ thống nhận repo docker mới:
+    ```console
+    sudo apt update
+    ```
+6. Check các version docker có thể cài đặt trong hệ thống:
+    ```console
+    apt-cache policy docker-ce
+    ```
+7. Cài đặt mặc định version docker:
+    ```console
+    sudo apt install docker-ce -y
+    ```
+8. Sau đó kiểm tra **dịch vụ Docker** đã hoạt động hay chưa bằng lệnh:
+    ```console
+    sudo systemctl status docker
+    ```
+9. Sau khi cài đặt, bạn có thể cho user hiện tại thuộc **group docker**, để khi gõ lệnh không cần xin quyền **sudo**
+    ```console
+    sudo usermod -aG docker $USER
+    ```
 
 ### => Để có hiệu lực bạn cần **Logout** user đó khỏi server. Sau đó **Login** lại.
+
+## Install Docker Compose
+Truy cập **Github docker compose** để cài đặt phiên bản như mong muốn: [Click here](https://github.com/docker/compose/releases)
+
+Hướng dẫn này mình sẽ sử dụng phiên bản **v2.24.0-birthday.10 🥳**
+
+1. Download file cài sẵn docker-compose:
+    ```console
+    wget https://github.com/docker/compose/releases/download/v2.24.0-birthday.10/docker-compose-linux-x86_64
+    ```
+2. Đổi tên file để dễ thao tác khi sử dụng:
+    ```console
+    mv docker-compose-linux-x86_64 docker-compose
+    ```
+3. Thêm quyền thực thi cho docker-compose và di chuyển vào /usr/local/bin sẽ giúp thao tác gọi được từ mọi nơi trong hệ thống:
+    ```console
+    chmod +x docker-compose && mv docker-compose /usr/local/bin/
+    ```
+4. Check lại phiên bản docker-compose:
+    ```console
+    docker-compose -v
+    ```
