@@ -7,9 +7,14 @@
 
 **Docker** gần giống như máy ảo (nếu các bạn đã từng sử dụng qua các nền tảng ảo hóa như **Virtual Box**, **VMWare**). Nhưng điểm khác là thay vì tạo ra toàn bộ hệ thống (ảo hóa), **Docker** lại cho phép ứng dụng sử dụng nhân của hệ điều hành đang chạy Docker để chạy ứng dụng bằng cách bổ sung thêm các thành phần còn thiếu cung cấp bởi container. Cách này làm tăng hiệu xuất và giảm kích thước ứng dụng.
 
+**Docker compose** là công cụ dùng để định nghĩa và run multi-container cho Docker application
+
 **=> Ai dùng Docker?** Docker mang lại lợi ích cho cả **lập trình viên** lẫn **quản trị hệ thống**!!
 
-## Install Docker on Ubuntu 20.04
+## Install Docker on Ubuntu
+
+**Lưu ý: Áp dụng từ bản 20.04 trở lên**
+
 1. Update hệ thống:
     ```console
     sudo apt update
@@ -20,11 +25,11 @@
     ```
 3. Add key docker:
     ```console
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     ```
 4. Add repo docker:
     ```console
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     ```
 5. Update lại hệ thống nhận repo docker mới:
     ```console
@@ -34,20 +39,21 @@
     ```console
     apt-cache policy docker-ce
     ```
-7. Cài đặt mặc định version docker:
+7. Cài đặt mặc định version docker
     ```console
     sudo apt install docker-ce -y
+    sudo systemctl start docker
+    sudo systemctl enable docker
     ```
 8. Sau đó kiểm tra **dịch vụ Docker** đã hoạt động hay chưa bằng lệnh:
     ```console
     sudo systemctl status docker
     ```
-9. Sau khi cài đặt, bạn có thể cho user hiện tại thuộc **group docker**, để khi gõ lệnh không cần xin quyền **sudo**
+9. Sau khi cài đặt, bạn có thể cho user hiện tại thuộc **group docker**, để khi gõ lệnh không cần xin quyền **sudo** (nếu user có quyền sudo thì bỏ qua bước này)
     ```console
     sudo usermod -aG docker $USER
     ```
-
-### => Để có hiệu lực bạn cần **Logout** user đó khỏi server. Sau đó **Login** lại.
+    Để bước 9 có hiệu lực bạn cần **Logout** user đó khỏi server. Sau đó **Login** lại.
 
 ## Install Docker Compose
 Truy cập **Github docker compose** để cài đặt phiên bản như mong muốn: [Click here](https://github.com/docker/compose/releases)
