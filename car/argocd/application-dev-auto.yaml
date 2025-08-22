@@ -9,6 +9,9 @@ metadata:
     # Chọn bản mới nhất theo thời gian push (hoặc dùng semver nếu tag kiểu 1.2.3)
     # Trong trường hợp này dùng "newest-build" thay cho "latest" do Image Updater bản mới y/c giúp tương thích với các phiên bản trong tương lai
 
+    # Regex
+    # argocd-image-updater.argoproj.io/app.allow-tags: regexp:^[0-9]{6}-[0-9]{6}_RC$
+
     argocd-image-updater.argoproj.io/app.update-strategy: newest-build
     # Ghi vào Git
     argocd-image-updater.argoproj.io/write-back-method: git
