@@ -1,0 +1,22 @@
+namespace: car2-serv
+
+image:
+  repository: docker.io/lamtruong01/car-serv
+  tag: "03"
+  pullPolicy: Always
+
+replicaCount: 4
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  host: car2.lamtruong.cloud
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  path: /
+  pathType: Prefix

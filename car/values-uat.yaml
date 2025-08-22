@@ -1,0 +1,6 @@
+namespace: car2-serv-uat
+image:
+  repository: docker.io/lamtruong01/car-serv
+  tag: "03"
+ingress:
+  host: car2-uat.lamtruong.cloud   # sửa theo DNS của bạn

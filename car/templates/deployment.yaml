@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car2-serv-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: car2-serv-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: car2-serv-deployment
+  template:
+    metadata:
+      labels:
+        app: car2-serv-deployment
+    spec:
+      containers:
+        - name: car-serv
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: tcp
+              containerPort: 80
+              protocol: TCP
