@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: car-serv-ingress
+  namespace: car-serv
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: car.lamtruong.cloud
+      http:
+        paths:
+          - pathType: Prefix
+            backend:
+              service:
+                name: car-serv-service
+                port:
+                  number: 80
+            path: /
