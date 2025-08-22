@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: car2-serv-dev
+  namespace: argocd
+  annotations:
+    # Image cần theo dõi (alias = app)
+    argocd-image-updater.argoproj.io/image-list: app=docker.io/lamtruong01/car-serv
+    # Chọn bản mới nhất theo thời gian push (hoặc dùng semver nếu tag kiểu 1.2.3)
+    argocd-image-updater.argoproj.io/app.update-strategy: latest
+    # Ghi vào Git
+    argocd-image-updater.argoproj.io/write-back-method: git
+    # Nhánh dev để commit (đang lab lười quá chỉ có 1 nhánh master)
+    argocd-image-updater.argoproj.io/git-branch: master
+    # Sửa trực tiếp file values-dev.yaml
+    argocd-image-updater.argoproj.io/write-back-target: helmvalues:values-dev.yaml
+
+    # Nếu chart dùng key CUSTOM, bỏ comment 2 dòng dưới và sửa đúng đường dẫn:
+    # argocd-image-updater.argoproj.io/app.helm.image-name: image.repository
+    # argocd-image-updater.argoproj.io/app.helm.image-tag: image.tag
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: car2-serv
+  source:
+    repoURL: https://github.com/N-LamTruong/Docker.git
+    path: car
+    targetRevision: master
+    helm:
+      valueFiles: [values-dev.yaml]
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }

@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: car2-serv-dev
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: car2-serv-dev
+  source:
+    repoURL: https://github.com/N-LamTruong/Docker.git
+    path: car
+    targetRevision: master        # hoặc dev
+    helm:
+      valueFiles: [values-dev.yaml]
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

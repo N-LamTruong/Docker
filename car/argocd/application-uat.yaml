@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: car2-serv-uat
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: car2-serv-uat
+  source:
+    repoURL: https://github.com/N-LamTruong/Docker.git
+    path: car
+    targetRevision: master        # hoặc uat
+    helm:
+      valueFiles: [values-uat.yaml]
+  syncPolicy:
+    automated:
+    syncOptions:
+      - CreateNamespace=true
