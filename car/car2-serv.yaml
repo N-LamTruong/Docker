@@ -1,0 +1,86 @@
+# Namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: car2-serv
+---
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: car2-serv-deployment
+  name: car2-serv-deployment
+  namespace: car2-serv
+spec:
+  # Số pod
+  replicas: 4
+  strategy:
+    # Triển khai dần dần xóa từng pod không làm downtime (thay thế từng pod cũ sang pod mới)
+    type: RollingUpdate
+    rollingUpdate:
+      # Thêm tối đa 2 pod mới (4 + 2 = 6)
+      maxSurge: 2
+      # Số pod cũ tắt cùng 1 lúc là 2 (4 - 2 = 2)
+      maxUnavailable: 2
+  revisionHistoryLimit: 11
+  selector:
+    matchLabels:
+      app: car2-serv-deployment
+  template:
+    metadata:
+      labels:
+        app: car2-serv-deployment
+      namespace: car2-serv
+    spec:
+      containers:
+        - image: elroydevops/car-serv
+          imagePullPolicy: Always
+          name: car-serv
+          ports:
+            - containerPort: 80
+              name: tcp
+              protocol: TCP
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: car2-serv-service
+  namespace: car2-serv
+spec:
+  type: ClusterIP
+  selector:
+      app: car2-serv-deployment
+  ports:
+    # Port mà Service lắng nghe bên trong cluster. Các ứng dụng khác trong cluster nếu muốn nói chuyện với `car-serv-service` sẽ kết nối đến `car-serv-service:80`
+    - port: 80
+      # Port trên container (bên trong Pod) mà traffic sẽ được chuyển đến. Tức là, traffic đi vào Service ở `port: 80` sẽ được chuyển tiếp đến `port 80` của Pod.
+      targetPort: 80
+---
+# Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: car2-serv-ingress
+  namespace: car2-serv
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: car2.lamtruong.cloud
+      http:
+        paths:
+          - pathType: Prefix
+            backend:
+              service:
+                name: car2-serv-service
+                port:
+                  number: 80
+            path: /
