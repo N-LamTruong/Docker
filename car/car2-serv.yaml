@@ -34,7 +34,7 @@ spec:
       namespace: car2-serv
     spec:
       containers:
-        - image: elroydevops/car-serv
+        - image: lamtruong01/car-serv:03
           imagePullPolicy: Always
           name: car-serv
           ports:
