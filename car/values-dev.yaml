@@ -1,6 +1,6 @@
 namespace: car2-serv-dev
 image:
   repository: docker.io/lamtruong01/car-serv
-  tag: "05"
+  tag: "06"
 ingress:
   host: car2-dev.lamtruong.cloud # sửa theo DNS của bạn, hoặc giữ nguyên host dùng chung
