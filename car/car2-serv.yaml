@@ -71,6 +71,8 @@ kind: Ingress
 metadata:
   name: car2-serv-ingress
   namespace: car2-serv
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
